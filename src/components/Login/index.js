@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import { useState } from "react";
-import { MyButton, Container, input } from "../styledComponents";
+import { MyButton, Container, MyInput } from "./styles";
 
 export default function Login({ setLogin }) {
   const [error, setError] = useState(false);
@@ -40,10 +40,10 @@ export default function Login({ setLogin }) {
 
   return (
     <>
-      <form onSubmit={handleSubmit(handleLogin)}>
+      <Container onSubmit={handleSubmit(handleLogin)}>
         <h3>Login</h3>
         <div>
-          <input
+          <MyInput
             placeholder="Usuário"
             onChange={() => setError(false)}
             {...register("username")}
@@ -51,7 +51,7 @@ export default function Login({ setLogin }) {
           {errors.userName?.message}
         </div>
         <div>
-          <input
+          <MyInput
             type="password"
             placeholder="Senha"
             {...register("password")}
@@ -62,9 +62,9 @@ export default function Login({ setLogin }) {
           {error && <p>Usuário ou senha incorreto, verifique seus dados.</p>}
         </div>
         <div>
-          <button type="submit">Entrar</button>
+          <MyButton type="submit">Entrar</MyButton>
         </div>
-      </form>
+      </Container>
     </>
   );
 }
